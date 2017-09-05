@@ -1,0 +1,30 @@
+{
+  "generator-angularjs-library": {
+    "props": {
+      "author": {
+        "name": "Emmanuel Ariza",
+        "email": "ejariza@gmail.com"
+      },
+      "libraryName": {
+        "original": "ng-cier-lib",
+        "camelized": "ngCierLib",
+        "dasherized": "ng-cier-lib",
+        "slugified": "ng-cier-lib",
+        "parts": [
+          "ng",
+          "cier",
+          "lib"
+        ]
+      },
+      "includeModuleDirectives": true,
+      "includeModuleFilters": true,
+      "includeModuleServices": true,
+      "includeAngularModuleResource": true,
+      "includeAngularModuleCookies": true,
+      "includeAngularModuleSanitize": true,
+      "librarySrcDirectory": "src/ng-cier-lib",
+      "libraryUnitTestDirectory": "test/unit/ng-cier-lib",
+      "libraryUnitE2eDirectory": "test/e2e/ng-cier-lib"
+    }
+  }
+}
