@@ -53,6 +53,7 @@ gulp.task('build', ['templates'], function() {
   gulp.src(sourceFiles)
     .pipe(plumber())
     .pipe(concat('ng-cier-lib.js'))
+    .pipe(gulp.dest('./misc/demo'))
     .pipe(gulp.dest('./dist/'))
     .pipe(uglify())
     .pipe(rename('ng-cier-lib.min.js'))
