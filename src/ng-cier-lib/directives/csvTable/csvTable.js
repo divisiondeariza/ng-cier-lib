@@ -16,7 +16,7 @@ angular.module('ngCierLib.directives')
 	return {
 		restrict: 'E',
 		replace: true,
-		templateUrl: 'ng-cier-lib/directives/csvTableDirective/csvTableDirective.html',
+		templateUrl: 'ng-cier-lib/directives/csvTable/csvTable.html',
 		scope: {
 			src: '@'
 		},
