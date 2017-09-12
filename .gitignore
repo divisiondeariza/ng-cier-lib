@@ -16,3 +16,9 @@ libpeerconnection.log
 
 # Bower components
 bower
+
+# compiled files for examples
+misc/demo/*.js
+
+# temps
+.tmp/
