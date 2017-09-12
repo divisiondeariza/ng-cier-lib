@@ -44,7 +44,7 @@ gulp.task('templates', function () {
     .pipe(htmlmin({collapseWhitespace: true}))
     .pipe(templateCache({
       filename: 'my-module-templates.js',
-      module: 'myModule.templates'
+      module: 'ngCierLib'
     }))
     .pipe(gulp.dest('.tmp'));
 });

@@ -1,6 +1,4 @@
-'use strict';
-
-angular.module('cier.utils.csvTableDirective',[])
+angular.module('ngCierLib.directives')
 .directive('csvTable',['$http', function($http){
 	function link(scope, element, attr) {
 		scope.tableHeaders = [];
@@ -18,7 +16,7 @@ angular.module('cier.utils.csvTableDirective',[])
 	return {
 		restrict: 'E',
 		replace: true,
-		templateUrl: 'src/csvTableDirective/csvTableDirective.html',
+		templateUrl: 'ng-cier-lib/directives/csvTableDirective/csvTableDirective.html',
 		scope: {
 			src: '@'
 		},

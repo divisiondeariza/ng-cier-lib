@@ -1,4 +1,1 @@
-angular.module('ngCierLib.demo', ['ngCierLib'], function(){
-
-	console.log("horray");
-})
+angular.module('ngCierLib.demo', ['ngCierLib'])
