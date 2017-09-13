@@ -18,7 +18,7 @@ libpeerconnection.log
 bower
 
 # compiled files for examples
-misc/demo/*.js
+# misc/demo/*.js
 
 # temps
 .tmp/

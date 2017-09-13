@@ -1,6 +1,6 @@
 'use strict';
 
-describe('cier.utils.csvTableDirective directive', function(){
+describe('csvTable directive', function(){
 	var compile, scope, directiveElem, $http;
 
 	function getCompiledElement(){
@@ -11,7 +11,7 @@ describe('cier.utils.csvTableDirective directive', function(){
 	}
 
 	beforeEach(function(){
-		module('cier.utils.csvTableDirective');
+		module('ngCierLib');
 		//module("my.templates");
 		inject(function($compile, $rootScope, $httpBackend){
 			compile = $compile;
@@ -33,32 +33,32 @@ describe('cier.utils.csvTableDirective directive', function(){
 	});
 
 
-	// it('should be rendered', function(){
-	// 	directiveElem = getCompiledElement();
-	// 	expect(directiveElem.html()).not.toEqual('');
-	// 	$http.flush();
-	// });
+	it('should be rendered', function(){
+		directiveElem = getCompiledElement();
+		expect(directiveElem.html()).not.toEqual('');
+		$http.flush();
+	});
 
-	// it('GET scope.src', function() {
-	// 	$http.expectGET('example.com/table.csv');
-	// 	directiveElem = getCompiledElement();
-	// 	$http.flush();
-	// });
+	it('GET scope.src', function() {
+		$http.expectGET('example.com/table.csv');
+		directiveElem = getCompiledElement();
+		$http.flush();
+	});
 
-	// it('renders the table from csv file retrieved', function() {
-	// 	$http.expectGET('example.com/table.csv');
-	// 	directiveElem = getCompiledElement();
-	// 	$http.flush();
-	// 	var tableHead = angular.element(directiveElem).find("table").find("thead");
-	// 	var tableBody = angular.element(directiveElem).find("table").find("tbody");
-	// 	expect(tableHead.find("th")[0].textContent).toEqual("header 1");
-	// 	expect(tableHead.find("th")[1].textContent).toEqual("header 2");
-	// 	expect(tableBody.find("td")[0].textContent).toEqual("d11");
-	// 	expect(tableBody.find("td")[1].textContent).toEqual("d12");
-	// 	expect(tableBody.find("td")[2].textContent).toEqual("d21");
-	// 	expect(tableBody.find("td")[3].textContent).toEqual("d22");
+	it('renders the table from csv file retrieved', function() {
+		$http.expectGET('example.com/table.csv');
+		directiveElem = getCompiledElement();
+		$http.flush();
+		var tableHead = angular.element(directiveElem).find("table").find("thead");
+		var tableBody = angular.element(directiveElem).find("table").find("tbody");
+		expect(tableHead.find("th")[0].textContent).toEqual("header 1");
+		expect(tableHead.find("th")[1].textContent).toEqual("header 2");
+		expect(tableBody.find("td")[0].textContent).toEqual("d11");
+		expect(tableBody.find("td")[1].textContent).toEqual("d12");
+		expect(tableBody.find("td")[2].textContent).toEqual("d21");
+		expect(tableBody.find("td")[3].textContent).toEqual("d22");
 
-	// });
+	});
 
 
 })

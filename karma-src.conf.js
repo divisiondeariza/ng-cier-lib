@@ -10,7 +10,8 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['mocha', 'chai-jquery', 'jquery-1.8.3', 'sinon-chai'],
+    frameworks: ['jasmine', 'mocha', 'chai-jquery', 'jquery-1.8.3', 'sinon-chai'],
+    // frameworks: ['jasmine'],
 
     plugins: [
       'karma-mocha',
@@ -19,6 +20,7 @@ module.exports = function(config) {
       'karma-chrome-launcher',
       'karma-phantomjs-launcher',
       'karma-jquery',
+      'karma-jasmine',
       'karma-chai-jquery',
       'karma-spec-reporter'
     ],
@@ -32,7 +34,8 @@ module.exports = function(config) {
       'bower/angular-mocks/angular-mocks.js',
       'src/**/*.module.js',
       'src/**/*.js',
-      'test/unit/**/*.js'
+      'test/unit/**/*.js',
+      '.tmp/my-module-templates.js'
     ],
 
 

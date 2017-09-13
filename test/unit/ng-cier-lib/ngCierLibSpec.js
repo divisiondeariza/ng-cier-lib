@@ -18,24 +18,24 @@ describe('', function() {
   });
 
   it('should load config module', function() {
-    expect(hasModule('ngCierLib.config')).to.be.ok;
+    expect(hasModule('ngCierLib.config')).toBeTruthy();
   });
 
   
   it('should load filters module', function() {
-    expect(hasModule('ngCierLib.filters')).to.be.ok;
+    expect(hasModule('ngCierLib.filters')).toBeTruthy();
   });
   
 
   
   it('should load directives module', function() {
-    expect(hasModule('ngCierLib.directives')).to.be.ok;
+    expect(hasModule('ngCierLib.directives')).toBeTruthy();
   });
   
 
   
   it('should load services module', function() {
-    expect(hasModule('ngCierLib.services')).to.be.ok;
+    expect(hasModule('ngCierLib.services')).toBeTruthy();
   });
   
 
