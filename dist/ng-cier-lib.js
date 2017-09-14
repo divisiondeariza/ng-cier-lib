@@ -27,6 +27,27 @@
 
 })(angular);
 
+'use strict';
+
+angular.module('ngCierLib.directives', [])
+.directive('barGraph', function () {
+  var value = 0;
+
+  return {
+    restrict: 'AE',
+    templateUrl: 'ng-cier-lib/directives/bar-graph/bar-graph.html',
+    replcae: true,
+    link: function ($scope) {
+
+      $scope.getValue = function () {
+        return value;
+      };
+      $scope.increment = function () {
+        value++;
+      };
+    }
+  };
+});
 angular.module('ngCierLib.directives')
 .directive('csvTable',['$http', function($http){
 	function link(scope, element, attr) {
@@ -55,4 +76,5 @@ angular.module('ngCierLib.directives')
 
 
 
-angular.module('ngCierLib').run(['$templateCache', function($templateCache) {$templateCache.put('ng-cier-lib/directives/csvTable/csvTable.html','<div><table><thead><tr><th ng-repeat="header in tableHeaders" ng-bind="header"></th></tr></thead><tbody><tr ng-repeat="row in tableData"><td ng-repeat="datum in row" ng-bind="datum"></td></tr></tbody></table></div>');}]);
+angular.module('ngCierLib').run(['$templateCache', function($templateCache) {$templateCache.put('ng-cier-lib/directives/bar-graph/bar-graph.html','<div class="bar-graph"><div>The value is {{getValue()}}</div><button ng-click="increment()">+</button></div>');
+$templateCache.put('ng-cier-lib/directives/csvTable/csvTable.html','<div><table><thead><tr><th ng-repeat="header in tableHeaders" ng-bind="header"></th></tr></thead><tbody><tr ng-repeat="row in tableData"><td ng-repeat="datum in row" ng-bind="datum"></td></tr></tbody></table></div>');}]);
