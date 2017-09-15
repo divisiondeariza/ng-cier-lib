@@ -7,7 +7,9 @@
       "email": "ejariza@gmail.com"
     }
   ],
-  "main": ["dist/ng-cier-lib.js"],
+  "main": [
+    "dist/ng-cier-lib.js"
+  ],
   "ignore": [
     "src",
     "test",
@@ -22,6 +24,7 @@
     "angular": ">=1.2.0",
     "angular-resource": ">=1.2.0",
     "angular-cookies": ">=1.2.0",
-    "angular-sanitize": ">=1.2.0"
+    "angular-sanitize": ">=1.2.0",
+    "angular-nvd3": "^1.0.9"
   }
 }

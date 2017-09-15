@@ -11,7 +11,7 @@
       });
 
   // Modules
-  angular.module('ngCierLib.directives', []);
+  angular.module('ngCierLib.directives', ['nvd3']);
   angular.module('ngCierLib.filters', []);
   angular.module('ngCierLib.services', []);
   angular.module('ngCierLib',
@@ -29,25 +29,54 @@
 
 'use strict';
 
-angular.module('ngCierLib.directives', [])
-.directive('barGraph', function () {
-  var value = 0;
+angular.module('ngCierLib.directives')
+.directive('barGraph', ['$http', function ($http) {
 
   return {
     restrict: 'AE',
     templateUrl: 'ng-cier-lib/directives/bar-graph/bar-graph.html',
     replcae: true,
+    scope: {
+      src: '@'
+    },
     link: function ($scope) {
 
-      $scope.getValue = function () {
-        return value;
-      };
-      $scope.increment = function () {
-        value++;
-      };
-    }
-  };
-});
+      if($scope.src){
+          console.log($scope.src);
+            $http.get($scope.src).
+            then(function(response){
+              $scope.data = response.data;
+            });
+      }
+
+      $scope.options = {
+        chart: {
+          type: 'discreteBarChart',
+          height: 450,
+/*                  margin : {
+                   top: 20,
+                    right: 20,
+                    bottom: 50,
+                    left: 55
+                  },*/
+                  x: function(d){return d.label;},
+                  y: function(d){return d.value + (1e-10);},
+                  showValues: true,
+                // duration: 500,
+/*                xAxis: {
+                    axisLabel: 'X Axis'
+                },
+                yAxis: {
+                    axisLabel: 'Y Axis',
+                    axisLabelDistance: -10
+                  }*/
+                }
+              };
+
+
+          }
+        };
+      }]);
 angular.module('ngCierLib.directives')
 .directive('csvTable',['$http', function($http){
 	function link(scope, element, attr) {
@@ -76,5 +105,5 @@ angular.module('ngCierLib.directives')
 
 
 
-angular.module('ngCierLib').run(['$templateCache', function($templateCache) {$templateCache.put('ng-cier-lib/directives/bar-graph/bar-graph.html','<div class="bar-graph"><div>The value is {{getValue()}}</div><button ng-click="increment()">+</button></div>');
+angular.module('ngCierLib').run(['$templateCache', function($templateCache) {$templateCache.put('ng-cier-lib/directives/bar-graph/bar-graph.html','<div class="bar-graph"><nvd3 options="options" data="data"></nvd3></div>');
 $templateCache.put('ng-cier-lib/directives/csvTable/csvTable.html','<div><table><thead><tr><th ng-repeat="header in tableHeaders" ng-bind="header"></th></tr></thead><tbody><tr ng-repeat="row in tableData"><td ng-repeat="datum in row" ng-bind="datum"></td></tr></tbody></table></div>');}]);

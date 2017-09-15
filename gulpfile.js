@@ -64,7 +64,7 @@ gulp.task('build', ['templates'], function() {
  * Process
  */
 gulp.task('process-all', function (done) {
-  runSequence('templates', 'jshint', 'test-src', 'build', done);
+  runSequence('jshint', 'templates', 'test-src', 'build', done);
 });
 
 /**

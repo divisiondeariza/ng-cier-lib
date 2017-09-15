@@ -11,7 +11,7 @@
       });
 
   // Modules
-  angular.module('ngCierLib.directives', []);
+  angular.module('ngCierLib.directives', ['nvd3']);
   angular.module('ngCierLib.filters', []);
   angular.module('ngCierLib.services', []);
   angular.module('ngCierLib',
