@@ -35,6 +35,7 @@ module.exports = function(config) {
       'bower/d3/d3.js',
       'bower/nvd3/build/nv.d3.js',
       'bower/angular-nvd3/dist/angular-nvd3.js',
+      'bower/angular-tablesort/js/angular-tablesort.js',
       'src/**/*.module.js',
       'src/**/*.js',
       'test/unit/**/*.js',

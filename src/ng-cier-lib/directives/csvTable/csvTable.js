@@ -9,7 +9,14 @@ angular.module('ngCierLib.directives')
 				return rowString.split(',');
 			});
 			scope.tableHeaders = rows[0];
-			scope.tableData = rows.splice(1);
+			scope.tableData = rows.splice(1).map(function(rawRow){
+				var row = {};
+				scope.tableHeaders.forEach(function(header, index){
+					row[header] = rawRow[index];
+				});
+				return row;
+			});
+			// console.log(scope.tableData);
 		});
 	}
 

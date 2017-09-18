@@ -1,14 +1,15 @@
 <div>	
-	<table>
+	<table  ts-wrapper>
 		<thead>
 			<tr>
-				<th ng-repeat="header in tableHeaders" ng-bind="header">
+				<th ng-repeat="header in tableHeaders" ng-bind="header" ts-criteria="{{header}}">
 				</th>				
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="row in tableData">
-				<td ng-repeat="datum in row" ng-bind="datum">
+			<tr ng-repeat="row in tableData" ts-repeat>
+				<td ng-repeat="header in tableHeaders">
+					{{row[header]}}
 				</td>
 			</tr>		
 		</tbody>

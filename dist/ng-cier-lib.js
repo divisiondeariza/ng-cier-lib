@@ -22,7 +22,8 @@
           'ngCierLib.services',
           'ngResource',
           'ngCookies',
-          'ngSanitize'
+          'ngSanitize',
+          'tableSort'
       ]);
 
 })(angular);
@@ -88,7 +89,14 @@ angular.module('ngCierLib.directives')
 				return rowString.split(',');
 			});
 			scope.tableHeaders = rows[0];
-			scope.tableData = rows.splice(1);
+			scope.tableData = rows.splice(1).map(function(rawRow){
+				var row = {};
+				scope.tableHeaders.forEach(function(header, index){
+					row[header] = rawRow[index];
+				});
+				return row;
+			});
+			// console.log(scope.tableData);
 		});
 	}
 
@@ -106,4 +114,4 @@ angular.module('ngCierLib.directives')
 
 
 angular.module('ngCierLib').run(['$templateCache', function($templateCache) {$templateCache.put('ng-cier-lib/directives/bar-graph/bar-graph.html','<div class="bar-graph"><nvd3 options="options" data="data"></nvd3></div>');
-$templateCache.put('ng-cier-lib/directives/csvTable/csvTable.html','<div><table><thead><tr><th ng-repeat="header in tableHeaders" ng-bind="header"></th></tr></thead><tbody><tr ng-repeat="row in tableData"><td ng-repeat="datum in row" ng-bind="datum"></td></tr></tbody></table></div>');}]);
+$templateCache.put('ng-cier-lib/directives/csvTable/csvTable.html','<div><table ts-wrapper><thead><tr><th ng-repeat="header in tableHeaders" ng-bind="header" ts-criteria="{{header}}"></th></tr></thead><tbody><tr ng-repeat="row in tableData" ts-repeat><td ng-repeat="header in tableHeaders">{{row[header]}}</td></tr></tbody></table></div>');}]);

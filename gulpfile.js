@@ -29,6 +29,7 @@ var sourceFiles = [
   path.join(sourceDirectory, '/**/*.module.js'),
 
   // Then add all JavaScript files
+  //'bower/angular-tablesort/js/angular-tablesort.min.js',
   path.join(sourceDirectory, '/**/*.js'),
   '.tmp/my-module-templates.js',
 ];

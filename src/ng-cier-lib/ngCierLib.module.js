@@ -22,7 +22,8 @@
           'ngCierLib.services',
           'ngResource',
           'ngCookies',
-          'ngSanitize'
+          'ngSanitize',
+          'tableSort'
       ]);
 
 })(angular);
