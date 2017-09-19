@@ -29,49 +29,69 @@ var sourceFiles = [
   path.join(sourceDirectory, '/**/*.module.js'),
 
   // Then add all JavaScript files
-  //'bower/angular-tablesort/js/angular-tablesort.min.js',
+
   path.join(sourceDirectory, '/**/*.js'),
   '.tmp/my-module-templates.js',
-];
+  ];
 
-var lintFiles = [
+  var dependenceFiles = [
+  //'bower/angular/angular.min.js',
+  //'bower/angular-cookies/angular-cookies.min.js',
+  //'bower/angular-nvd/dist/angular-nvd3.min.js',
+  //'bower/angular-resource/angular-resource.min.js',
+  //'bower/angular-sanitize/angular-sanitize.min.js',
+  'bower/angular-tablesort/js/angular-tablesort.js',
+  //'bower/d3/d3.min.js',
+  ];
+
+  var lintFiles = [
   'gulpfile.js',
   // Karma configuration
   'karma-*.conf.js'
-].concat(sourceFiles);
+  ].concat(sourceFiles);
 
-gulp.task('templates', function () {
-  return gulp.src('src/**/*.html')
+  gulp.task('templates', function () {
+    return gulp.src('src/**/*.html')
     .pipe(htmlmin({collapseWhitespace: true}))
     .pipe(templateCache({
       filename: 'my-module-templates.js',
       module: 'ngCierLib'
     }))
     .pipe(gulp.dest('.tmp'));
-});
+  });
 
-gulp.task('build', ['templates'], function() {
-  gulp.src(sourceFiles)
+  gulp.task('dependences', function(){
+    return gulp.src(dependenceFiles)
+   .pipe(plumber())
+   .pipe(concat('my-deps.js'))
+   .pipe(uglify())
+   .pipe(gulp.dest('.tmp'));
+
+ });
+
+  gulp.task('build', ['templates'], function() {
+    gulp.src(dependenceFiles.concat(sourceFiles))
     .pipe(plumber())
     .pipe(concat('ng-cier-lib.js'))
     .pipe(gulp.dest('./dist/'))
+    .pipe(gulp.dest('./misc/demo'))
     .pipe(uglify())
     .pipe(rename('ng-cier-lib.min.js'))
     .pipe(gulp.dest('./dist'))
     .pipe(gulp.dest('./misc/demo'));
-});
+  });
 
 /**
  * Process
  */
-gulp.task('process-all', function (done) {
+ gulp.task('process-all', function (done) {
   runSequence('jshint', 'templates', 'test-src', 'build', done);
 });
 
 /**
  * Watch task
  */
-gulp.task('watch', function () {
+ gulp.task('watch', function () {
 
   // Watch JavaScript files
   gulp.watch(sourceFiles, ['process-all']);
@@ -83,18 +103,18 @@ gulp.task('watch', function () {
 /**
  * Validate source JavaScript
  */
-gulp.task('jshint', function () {
+ gulp.task('jshint', function () {
   return gulp.src(lintFiles)
-    .pipe(plumber())
-    .pipe(jshint())
-    .pipe(jshint.reporter('jshint-stylish'))
-    .pipe(jshint.reporter('fail'));
+  .pipe(plumber())
+  .pipe(jshint())
+  .pipe(jshint.reporter('jshint-stylish'))
+  .pipe(jshint.reporter('fail'));
 });
 
 /**
  * Run test once and exit
  */
-gulp.task('test-src', function (done) {
+ gulp.task('test-src', function (done) {
   karma.start({
     configFile: __dirname + '/karma-src.conf.js',
     singleRun: true
@@ -104,7 +124,7 @@ gulp.task('test-src', function (done) {
 /**
  * Run test once and exit
  */
-gulp.task('test-dist-concatenated', function (done) {
+ gulp.task('test-dist-concatenated', function (done) {
   karma.start({
     configFile: __dirname + '/karma-dist-concatenated.conf.js',
     singleRun: true
@@ -114,13 +134,13 @@ gulp.task('test-dist-concatenated', function (done) {
 /**
  * Run test once and exit
  */
-gulp.task('test-dist-minified', function (done) {
+ gulp.task('test-dist-minified', function (done) {
   karma.start({
     configFile: __dirname + '/karma-dist-minified.conf.js',
     singleRun: true
   }, done);
 });
 
-gulp.task('default', function () {
+ gulp.task('default', function () {
   runSequence('process-all', 'watch');
 });
