@@ -35,13 +35,14 @@ var sourceFiles = [
   ];
 
   var dependenceFiles = [
-  //'bower/angular/angular.min.js',
-  //'bower/angular-cookies/angular-cookies.min.js',
-  //'bower/angular-nvd/dist/angular-nvd3.min.js',
-  //'bower/angular-resource/angular-resource.min.js',
-  //'bower/angular-sanitize/angular-sanitize.min.js',
+
+  'bower/angular-resource/angular-resource.min.js',
+  'bower/angular-sanitize/angular-sanitize.min.js',
+  'bower/angular-cookies/angular-cookies.min.js',
+  'bower/d3/d3.min.js',
+  'bower/nvd3/build/nv.d3.min.js',
+  'bower/angular-nvd3/dist/angular-nvd3.min.js',
   'bower/angular-tablesort/js/angular-tablesort.js',
-  //'bower/d3/d3.min.js',
   ];
 
   var lintFiles = [
